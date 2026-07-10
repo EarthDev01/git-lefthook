@@ -20,7 +20,7 @@ pre-commit:
     check-branch:
       run: |
         current_branch=$(git rev-parse --abbrev-ref HEAD)
-        if [ "$current_branch" = "main " ] || [ "$current_branch" = "master" ]; then
+        if [ "$current_branch" = "main" ] || [ "$current_branch" = "master" ]; then
           echo "❌ Direct commits to '$current_branch' are not allowed." >&2
           echo "👉 Please create a feature branch and use a Pull Request instead." >&2
           exit 1
