@@ -1,5 +1,3 @@
-# template-ts-vue3
-
 Go project template พร้อม Git Hook ([Lefthook](https://github.com/evilmartians/lefthook)) สำหรับ code quality และ team policy — config อยู่ใน `lefthook.yml` ไฟล์เดียว ไม่ต้องมี script แยก
 
 ## Prerequisites
@@ -20,15 +18,16 @@ go install github.com/evilmartians/lefthook/v2@latest
 
 ```sh
 git clone <repo-url>
-cd template-ts-vue3
-go mod download
+cd git-lefthook
 ```
 
-### 2) ลงทะเบียน Git Hook
+### 2) รัน setup script (download deps + ติดตั้ง Git hook)
 
 ```sh
-lefthook install
+./scripts/setup.sh
 ```
+
+script จะรัน `go mod download` และ `lefthook install` ให้อัตโนมัติ
 
 ### 3) ทดสอบว่า hook ทำงาน
 
@@ -137,7 +136,7 @@ your-go-project/
 ```sh
 cd your-go-project
 brew install lefthook    # ครั้งเดียวบนเครื่อง
-lefthook install
+./scripts/setup.sh
 lefthook run pre-commit  # ทดสอบ
 ```
 
@@ -154,7 +153,7 @@ lefthook run pre-commit  # ทดสอบ
 หลัง commit ไฟล์ hook ขึ้น repo แล้ว สมาชิกทีมที่ clone มาใหม่รันแค่:
 
 ```sh
-lefthook install
+./scripts/setup.sh
 ```
 
 ---
@@ -180,7 +179,8 @@ LEFTHOOK=0 git commit -m "wip: draft"
 ### ไฟล์ที่เกี่ยวข้อง
 
 ```
-lefthook.yml    # config หลักของ hook (จำเป็น)
-go.mod          # Go module
-cmd/            # entry point ของแอป
+lefthook.yml      # config หลักของ hook (จำเป็น)
+scripts/setup.sh  # setup โปรเจกต์ + ติดตั้ง Git hook
+go.mod            # Go module
+cmd/              # entry point ของแอป
 ```
